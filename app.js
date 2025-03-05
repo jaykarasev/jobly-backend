@@ -17,7 +17,16 @@ const morgan = require("morgan");
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://jobly-frontend-rubc.onrender.com", // Replace with your actual frontend URL
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+// app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(authenticateJWT);
@@ -26,7 +35,6 @@ app.use("/auth", authRoutes);
 app.use("/companies", companiesRoutes);
 app.use("/users", usersRoutes);
 app.use("/jobs", jobsRoutes);
-
 
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {
