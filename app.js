@@ -18,7 +18,7 @@ const morgan = require("morgan");
 const app = express();
 
 const corsOptions = {
-  origin: "https://jobly-frontend-rubc.onrender.com", // Replace with your actual frontend URL
+  origin: "*", // Temporarily allow all origins to debug CORS issue
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
